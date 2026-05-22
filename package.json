@@ -1,0 +1,51 @@
+{
+  "name": "gtask",
+  "version": "0.1.0",
+  "description": "Google Tasks CLI with multi-account support and a unified merged view",
+  "type": "module",
+  "bin": {
+    "gtask": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "prepare": "tsc"
+  },
+  "keywords": [
+    "google-tasks",
+    "cli",
+    "multi-account",
+    "productivity",
+    "tasks",
+    "todo"
+  ],
+  "author": "Doran Hwang (https://github.com/doranhwang)",
+  "license": "MIT",
+  "homepage": "https://github.com/doranhwang/gtask#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doranhwang/gtask.git"
+  },
+  "bugs": {
+    "url": "https://github.com/doranhwang/gtask/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "googleapis": "^144.0.0",
+    "open": "^10.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.2"
+  }
+}

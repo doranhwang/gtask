@@ -12,6 +12,33 @@ export async function listTaskLists(alias: string): Promise<tasks_v1.Schema$Task
   return res.data.items ?? [];
 }
 
+export async function resolveListId(alias: string, listRef: string): Promise<string> {
+  if (listRef === '@default') return listRef;
+  const lists = await listTaskLists(alias);
+  const nameMatch = lists.find((l) => l.title === listRef);
+  if (nameMatch?.id) return nameMatch.id;
+  const idMatch = lists.find((l) => l.id === listRef);
+  if (idMatch?.id) return idMatch.id;
+  const available = lists.map((l) => `"${l.title}"`).join(', ');
+  throw new Error(
+    `Task list "${listRef}" not found in account "${alias}". Available: ${available}`,
+  );
+}
+
+export async function createTaskList(
+  alias: string,
+  title: string,
+): Promise<tasks_v1.Schema$TaskList> {
+  const client = await getTasksClient(alias);
+  const res = await client.tasklists.insert({ requestBody: { title } });
+  return res.data;
+}
+
+export async function deleteTaskList(alias: string, listId: string): Promise<void> {
+  const client = await getTasksClient(alias);
+  await client.tasklists.delete({ tasklist: listId });
+}
+
 export async function listTasks(
   alias: string,
   listId = '@default',

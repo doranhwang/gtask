@@ -1,6 +1,6 @@
 {
   "name": "@doranhwang/gtask",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Google Tasks CLI with multi-account support and a unified merged view",
   "type": "module",
   "bin": {

@@ -101,6 +101,18 @@ gtask add "Buy coffee"
 # Add to a specific account with a due date
 gtask add "Sprint review prep" -a work -d 2026-05-30 -n "Slides + demo"
 
+# Add to a specific task list by name (no need to look up list IDs)
+gtask add "Buy milk" -a personal -l "Shopping list"
+
+# Show all task lists with full IDs
+gtask lists --full
+
+# Create a new task list
+gtask lists create "Writing list" -a personal
+
+# Delete a task list (by name or ID)
+gtask lists rm "Writing list" -a personal
+
 # Mark task #3 (from last list output) as done
 gtask done 3
 
@@ -143,6 +155,8 @@ The directory itself is `chmod 700`.
 | `gtask auth rm <alias>` | Remove an account |
 | `gtask auth default <alias>` | Set default account |
 | `gtask lists` | Show all task lists |
+| `gtask lists create <name>` | Create a task list |
+| `gtask lists rm <name>` | Delete a task list (by name or ID) |
 | `gtask list` (alias: `ls`) | Show tasks (merged across accounts) |
 | `gtask add <title>` | Add a task |
 | `gtask done <ref>` | Mark task completed |

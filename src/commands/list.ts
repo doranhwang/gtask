@@ -1,6 +1,6 @@
 import { Command } from 'commander';
 import chalk from 'chalk';
-import { listTasks, listTaskLists } from '../lib/tasks.js';
+import { listTasks, listTaskLists, resolveListId } from '../lib/tasks.js';
 import { listAliases, getAccount } from '../lib/config.js';
 import { formatTask, type TaskWithMeta } from '../lib/format.js';
 import { saveListCache } from '../lib/cache.js';
@@ -34,7 +34,7 @@ export function listCommand(): Command {
 
           let listIds: string[];
           if (opts.list) {
-            listIds = [opts.list];
+            listIds = [await resolveListId(alias, opts.list)];
           } else if (opts.allLists) {
             const lists = await listTaskLists(alias);
             listIds = lists.map((l) => l.id!).filter(Boolean);

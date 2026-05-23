@@ -1,6 +1,6 @@
 import { Command } from 'commander';
 import chalk from 'chalk';
-import { createTask } from '../lib/tasks.js';
+import { createTask, resolveListId } from '../lib/tasks.js';
 import { getAccount, getDefaultAlias } from '../lib/config.js';
 
 export function addCommand(): Command {
@@ -38,7 +38,8 @@ export function addCommand(): Command {
           body.due = new Date(opts.due + 'T00:00:00Z').toISOString();
         }
 
-        const created = await createTask(alias, opts.list, body);
+        const listId = await resolveListId(alias, opts.list);
+        const created = await createTask(alias, listId, body);
         console.log(
           chalk.green(`✓ Added to [${account.label}] ${alias}: ${created.title ?? title}`),
         );

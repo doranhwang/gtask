@@ -20,7 +20,7 @@
 ## Installation
 
 ```bash
-npm install -g gtask
+npm install -g @doranhwang/gtask
 ```
 
 Or from source:

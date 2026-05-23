@@ -17,7 +17,11 @@ export function saveListCache(entries: ListCacheEntry[]): void {
 
 export function loadListCache(): ListCacheEntry[] {
   if (!existsSync(LAST_LIST_PATH)) return [];
-  return JSON.parse(readFileSync(LAST_LIST_PATH, 'utf-8')) as ListCacheEntry[];
+  try {
+    return JSON.parse(readFileSync(LAST_LIST_PATH, 'utf-8')) as ListCacheEntry[];
+  } catch {
+    return [];
+  }
 }
 
 export function resolveTaskRef(input: string): ListCacheEntry {

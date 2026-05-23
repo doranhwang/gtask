@@ -1,6 +1,6 @@
 {
   "name": "@doranhwang/gtask",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Google Tasks CLI with multi-account support and a unified merged view",
   "type": "module",
   "bin": {
@@ -14,7 +14,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsx src/index.ts",
-    "prepare": "tsc"
+    "prepublishOnly": "tsc"
   },
   "keywords": [
     "google-tasks",
